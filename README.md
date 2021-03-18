@@ -1,0 +1,2 @@
+# adaptiveTimer
+ Adaptive Сountdown Timer
