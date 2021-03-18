@@ -1,0 +1,153 @@
+/* -----------------------GENERAL---------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+
+  font-family: "Ubuntu", sans-serif;
+  color: #ffffff;
+  line-height: 1.25;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* -----------------------mainscreen---------------------- */
+.mainscreen {
+  width: 100%;
+  background-color: #181830;
+  height: 100vh;
+}
+.wrapper {
+  max-width: 1100px;
+  width: 99%;
+  margin: 0 auto;
+}
+.lang {
+  position: relative;
+  padding-top: 25px;
+  display: flex;
+  justify-content: flex-end;
+}
+.lang a {
+  margin-right: 15px;
+  font-size: 16px;
+}
+.active {
+  text-decoration: underline;
+}
+.content {
+  padding-top: 110px;
+  text-align: center;
+}
+.main-img {
+  margin: 0 auto;
+  width: 90px;
+  height: 90px;
+}
+.heading-title {
+  margin: 0 auto;
+  max-width: 510px;
+  padding-top: 23px;
+  font-size: 64px;
+  font-weight: 300;
+  letter-spacing: 21px;
+  line-height: 96px;
+  text-transform: uppercase;
+}
+.subheading {
+  padding-top: 15px;
+  font-size: 18px;
+  letter-spacing: 4px;
+}
+.timer {
+  padding-top: 80px;
+  padding-bottom: 155px;
+  display: flex;
+  justify-content: center;
+}
+
+/* -----------------------timer customization---------------------- */
+.countdown {
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+.countdown-number {
+  margin: 0px 10px;
+  padding: 10px;
+  border-radius: 3px;
+  background: #000d3a;
+  display: inline-block;
+  width: 115px;
+}
+
+.countdown-time {
+  padding: 15px;
+  border-radius: 3px;
+  background: #1c2a5a;
+  display: inline-block;
+}
+
+.countdown-text {
+  display: block;
+  padding-top: 5px;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+/*-------------------------Планшеты в вертикальной ориентации-----------------------*/
+@media (min-width: 481px) and (max-width: 1023px) {
+  .mainscreen {
+    height: 125vh;
+  }
+  .heading-title {
+    font-size: 40px;
+    line-height: 60px;
+  }
+  .countdown-number {
+    margin: 15px 20px;
+    width: 115px;
+  }
+}
+
+/*-------------------------Смартфоны в вертикальной ориентации-----------------------*/
+@media (max-width: 480px) {
+  .mainscreen {
+    height: auto;
+  }
+  .content {
+    padding-top: 75px;
+  }
+  .heading-title {
+    font-size: 25px;
+    line-height: 50px;
+  }
+  .countdown {
+    display: flex;
+    flex-direction: column;
+  }
+  .countdown-number {
+    margin: 15px 10px;
+    width: 150px;
+  }
+  .countdown-time {
+    width: 75px;
+    font-size: 22px;
+  }
+}
