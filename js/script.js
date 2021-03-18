@@ -1,77 +1,41 @@
-$(document).ready(function() {
-  
-   $('.overlay_popup').click(function() {
-      $('.overlay_popup, .popup').hide();
-   });
+function getTimeRemaining(endtime) {
+  var t = Date.parse(endtime) - Date.parse(new Date());
+  var seconds = Math.floor((t / 1000) % 60);
+  var minutes = Math.floor((t / 1000 / 60) % 60);
+  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  return {
+    total: t,
+    days: days,
+    hours: hours,
+    minutes: minutes,
+    seconds: seconds,
+  };
+}
 
-   $(".burger").on('click', function(){
-      $(this).toggleClass('active');
-      $('.menu').toggleClass('active');
-      $('.head').toggleClass('active');
-   })
+function initializeClock(id, endtime) {
+  var clock = document.getElementById(id);
+  var daysSpan = clock.querySelector(".days");
+  var hoursSpan = clock.querySelector(".hours");
+  var minutesSpan = clock.querySelector(".minutes");
+  var secondsSpan = clock.querySelector(".seconds");
 
-   $(".menu a").on('click', function(){
-      $(".burger").removeClass('active');
-      $('.menu').removeClass('active');
-      $('.head').removeClass('active');
-   })
-   
+  function updateClock() {
+    var t = getTimeRemaining(endtime);
 
-   $(".burger_r").on('click', function(){
-      $(this).toggleClass('active');
-      $('.menu').toggleClass('active');
-      $('.head').toggleClass('active');
-   })
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ("0" + t.hours).slice(-2);
+    minutesSpan.innerHTML = ("0" + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ("0" + t.seconds).slice(-2);
 
-   $(".menu a").on('click', function(){
-      $(".burger").removeClass('active');
-      $('.menu').removeClass('active');
-      $('.head').removeClass('active');
-   })
-   
+    if (t.total <= 0) {
+      clearInterval(timeinterval);
+    }
+  }
 
-  $(".plus").on('click', function(){
-      $(this).toggleClass("active");
-      $(this).parent(".qst_i_head").siblings(".qst_i_body").toggleClass("active");
-   })
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+}
 
-   $('a[href ^= "#"]').click(function () {
-      var elementClick = $(this).attr("href");
-      var destination = $(elementClick).offset().top;
-      $('html,body').animate( { scrollTop: destination }, 300 );
-      return false;
-   });
-
-   
-   $('.pf').on("click", function(){
-      $k = '.' + 'pf' +"_m";
-      //console.log($k);
-      $($k).addClass('active');
-      $btn = $($k).children(".portfolio_modal_content").children(".close_b").children('.btn_close');
-      $($btn).on('click', function(){
-        $($k).removeClass('active');
-      });
-    });
-
-
-   $(function(){
-      //2. Получить элемент, к которому необходимо добавить маску
-        $("#phone").mask("+7(999) 999-9999");
-        $("#phone1").mask("+7(999) 999-9999");
-        $("#phone2").mask("8(999) 999-9999");
-        $("#phone3").mask("8(999) 999-9999");
-        $("#phone4").mask("8(999) 999-9999");
-        $("#phone5").mask("8(999) 999-9999");
-    });
-
-});
-    /*new TypeIt("#typeit", {
-      speed: 100,
-      waitUntilVisible: true
-    })
-    .type("для поступления", {delay: 300})
-    .delete(-15)
-    .type("для работы", {delay: 300})
-    .delete(-10)
-    .type("для себя", {delay: 300})
-    .go()
+var deadline = "may 10 2021 12:00:00 GMT+0300"; //for Ukraine
+initializeClock("countdown", deadline);
